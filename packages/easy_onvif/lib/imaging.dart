@@ -9,3 +9,5 @@ export 'src/model/imaging/get_service_capabilities_response.dart';
 export 'src/model/imaging/get_status_response.dart';
 export 'src/model/imaging/imaging_preset.dart';
 export 'src/model/imaging/imaging_status_20.dart';
+export 'src/model/imaging/get_imaging_settings_response.dart';
+export 'src/model/imaging/imaging_settings.dart';

@@ -148,4 +148,30 @@ class Imaging extends Operation {
 
     return true;
   }
+
+  /// The [getImagingSettings] command retrieves the imaging settings of a
+  /// specific video source. The device returns the current imaging settings.
+  ///
+  /// Access Class: READ
+  Future<ImagingSettings20> getImagingSettings({
+    required String videoSourceToken,
+  }) async {
+    loggy.debug('getImagingSettings');
+
+    final responseEnvelope = await transport.securedRequest(
+      uri,
+      soap.Body(
+        request: ImagingRequest.getImagingSettings(
+          videoSourceToken: videoSourceToken,
+        ),
+      ),
+    );
+
+    if (responseEnvelope.body.hasFault) {
+      throw Exception(responseEnvelope.body.fault.toString());
+    }
+
+    return GetImagingSettingsResponse.fromJson(responseEnvelope.body.response!)
+        .imagingSettings20;
+  }
 }

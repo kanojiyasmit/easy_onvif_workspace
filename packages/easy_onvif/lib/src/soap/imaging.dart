@@ -74,4 +74,20 @@ class ImagingRequest {
 
     return Transport.builder.buildFragment();
   }
+
+  /// XML for the [getImagingSettings], requires a [videoSourceToken]
+  static XmlDocumentFragment getImagingSettings({
+    required String videoSourceToken,
+  }) {
+    Transport.builder.element('GetImagingSettings', nest: () {
+      Transport.builder.namespace(Xmlns.timg);
+
+      ReferenceToken(videoSourceToken).buildXml(
+        builder,
+        tag: 'VideoSourceToken',
+      );
+    });
+
+    return Transport.builder.buildFragment();
+  }
 }
